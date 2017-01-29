@@ -45,3 +45,24 @@ dataTrain <- loadData(pathsTrain)
 print("training data fully loaded")
 data <- rbind(dataTest, dataTrain)
 print("data fully merged")
+
+features <- read.table("UCI HAR Dataset/features.txt")
+print("get features")
+dataName <- "Subject"
+dataName <- c(dataName, "Activity")
+dataName <- c(dataName, as.character(features[,2]))
+names(data) <- dataName
+print("attribute variable name to the data set")
+
+featureWanted <- grep(".*(mean\\(|std\\()).*", colnames(data), value=TRUE, ignore.case=TRUE)
+data <- cbind(data[,1:2], data[,which(names(data) %in% featureWanted)])
+
+activityLabels <- read.table("UCI HAR Dataset/activity_labels.txt")
+activityLabels <- as.character(activityLabels[,2])
+data[,2] <- as.character(data[,2])
+for (i in 1:length(activityLabels))
+{
+    data[,2] <- replace(data[,2], data[,2] == as.character(i), activityLabels[[i]])
+    print(paste("replace the activity number", i, "with the activity label", activityLabels[[i]], sep=" "))
+}
+print("replace all activity numbers by the activity labels")
