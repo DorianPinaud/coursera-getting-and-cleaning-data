@@ -1,7 +1,7 @@
 # coursera-getting-and-cleaning-data
 Repository for the final assessment of "getting and cleaning data" coursera course.
 
-The run_analysis.R file operates the following action:
+The run_analysis.R file operates the following action on the data set "UCI HAR Dataset":
 * Gets all the data from the UCI HAR DataSet. **(line 42)**
 * Merges the test and the train dataset. **(line 46)**
 * Sets the names of each variables in the data set from the features file. **(line 49)**
