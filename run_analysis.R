@@ -66,3 +66,7 @@ for (i in 1:length(activityLabels))
     print(paste("replace the activity number", i, "with the activity label", activityLabels[[i]], sep=" "))
 }
 print("replace all activity numbers by the activity labels")
+
+average = data.frame(Average = rowMeans(data[,3:dim(data)[2]], na.rm = TRUE))
+data <- cbind(data, average)
+write.table(data, file="tidy-dataset.txt", row.names = FALSE)
